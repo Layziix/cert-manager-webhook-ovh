@@ -20,7 +20,7 @@ If you customized the installation of cert-manager, you may need to also set the
 
 ## Issuer
 
-1. [Create a new OVH API key](https://docs.ovh.com/gb/en/customer/first-steps-with-ovh-api/) with the following rights:
+1. [Create a new OVH API key](https://docs.ovh.com/gb/en/customer/first-steps-with-ovh-api/) with the following rights by opening [this link](https://auth.eu.ovhcloud.com/api/createToken?GET=/domain/zone/*&PUT=/domain/zone/*&POST=/domain/zone/*&DELETE=/domain/zone/*) and signing in:
     * `GET /domain/zone/*`
     * `PUT /domain/zone/*`
     * `POST /domain/zone/*`
