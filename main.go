@@ -100,7 +100,7 @@ func (s *ovhDNSProviderSolver) validate(cfg *ovhDNSProviderConfig, allowAmbientC
 	if cfg.Endpoint == "" {
 		return errors.New("no endpoint provided in OVH config")
 	}
-	if cfg.ApplicationKey == "" && cfg.cfg.ApplicationKeRef == nil {
+	if cfg.ApplicationKey == "" && cfg.ApplicationKeyRef == nil {
 		return errors.New("no application key provided in OVH config")
 	}
 	if cfg.ApplicationSecretRef.Name == "" {
