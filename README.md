@@ -28,10 +28,20 @@ If you customized the installation of cert-manager, you may need to also set the
 
 2. Create a secret to store your application secret:
 
-    ```bash
-    kubectl create secret generic ovh-credentials \
-      --from-literal=applicationSecret='<OVH_APPLICATION_SECRET>'
-    ```
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ovh-credentials
+  namespace: cert-manager
+type: Opaque
+stringData:
+  applicationKey: "<OVH_APPLICATION_KEY>"
+  applicationSecret: "<OVH_APPLICATION_SECRET>"
+  applicationConsumerKey: "<OVH_CONSUMER_KEY>"
+```
+
+and then `kubectl apply -f Secret.yaml`
 
 3. Grant permission to get the secret to the `cert-manager-webhook-ovh` service account:
 
@@ -80,11 +90,15 @@ If you customized the installation of cert-manager, you may need to also set the
               solverName: ovh
               config:
                 endpoint: ovh-eu
-                applicationKey: '<OVH_APPLICATION_KEY>'
+		applicationKeyRef:
+		  key: applicationKey
+		  name: ovh-credentials
                 applicationSecretRef:
                   key: applicationSecret
                   name: ovh-credentials
-                consumerKey: '<OVH_CONSUMER_KEY>'
+                consumerKeyRef:
+		  key: applicationConsumerKey
+		  name: ovh-credentials
     ```
 
 ## Certificate
